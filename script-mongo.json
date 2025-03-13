@@ -1,0 +1,386 @@
+// Briceño_Esteban
+
+// ----------------------------------------- INSERTONE ---------------------------------------//
+
+db.account.insertOne({
+    "accountNumber": "1010",
+    "client": {
+      "identificationType": "CC",
+      "identificationNumber": "2010",
+      "firstName": "Manuela",
+      "surname": "Moncada",
+      "email": "Mmoncada@comtrek.com",
+      "phone": "+57 879 517 2135"
+    },
+    "mainCurrency": "usd",
+    "currencies": [
+      "cop",
+      "usd"
+    ],
+    "movements": [
+      {
+        "type": "withdrawal",
+        "amount": 282,
+        "date": "2025-05-10T03:36:55 +05:00"
+      },
+      {
+        "type": "withdrawal",
+        "amount": 986,
+        "date": "2025-01-14T09:39:15 +05:00"
+      }
+    ],
+    "registered": "2025-02-28T07:37:02 +05:00",
+    "active": true
+}), // insercion de un archivo
+db.account.insertOne({
+    "accountNumber": "1011",
+    "client": {
+      "identificationType": "CE",
+      "identificationNumber": "5230",
+      "firstName": "Yallita",
+      "surname": "Yuritza",
+      "email": "Yuritza@comtrek.com",
+      "phone": "+57 879 517 1234"
+    },
+    "mainCurrency": "usd",
+    "currencies": [
+      "cop",
+      "usd"
+    ],
+    "movements": [
+      {
+        "type": "withdrawal",
+        "amount": 282,
+        "date": "2025-01-10T03:36:55 +05:00"
+      },
+      {
+        "type": "withdrawal",
+        "amount": 986,
+        "date": "2025-01-14T09:39:15 +05:00"
+      }
+    ],
+    "registered": "2025-02-28T07:37:02 +05:00",
+    "active": true
+}), // insercion de un archivo
+db.account.insertOne({
+    "accountNumber": "1012",
+    "client": {
+      "identificationType": "CC",
+      "identificationNumber": "2011",
+      "firstName": "Homer",
+      "surname": "Simpson",
+      "email": "Hsimpson@comtrek.com",
+      "phone": "+57 879 517 4567"
+    },
+    "mainCurrency": "cop",
+    "currencies": [
+      "cop",
+      "usd"
+    ],
+    "movements": [
+      {
+        "type": "withdrawal",
+        "amount": 282,
+        "date": "2025-06-10T03:36:55 +05:00"
+      },
+      {
+        "type": "withdrawal",
+        "amount": 986,
+        "date": "2025-01-14T09:39:15 +05:00"
+      }
+    ],
+    "registered": "2025-02-28T07:37:02 +05:00",
+    "active": true
+})  // insercion de un archivo
+
+//----------------------------------------- INSERTMANY ---------------------------------------//
+
+db.account.insertMany(
+[
+    {
+        "accountNumber": "1013",
+        "client": {
+        "identificationType": "CC",
+        "identificationNumber": "2013",
+        "firstName": "Morgana",
+        "surname": "Moncada",
+        "email": "Mmoncada@comtrek.com",
+        "phone": "+57 879 517 1235"
+    },
+        "mainCurrency": "cop",
+        "currencies": [
+        "cop",
+        "usd"
+    ],
+        "movements": [
+      {
+        "type": "withdrawal",
+        "amount": 282,
+        "date": "2025-05-10T03:36:55 +05:00"
+      },
+      {
+        "type": "withdrawal",
+        "amount": 986,
+        "date": "2025-01-14T09:39:15 +05:00"
+      }
+    ],
+        "registered": "2025-02-28T07:37:02 +05:00",
+        "active": true
+    },
+    {
+        "accountNumber": "1014",
+        "client": {
+        "identificationType": "CE",
+        "identificationNumber": "2014",
+        "firstName": "Meme",
+        "surname": "Monces",
+        "email": "Mmonces@comtrek.com",
+        "phone": "+57 879 517 2135"
+    },
+        "mainCurrency": "usd",
+        "currencies": [
+        "cop",
+        "usd"
+    ],
+        "movements": [
+      {
+        "type": "withdrawal",
+        "amount": 282,
+        "date": "2025-05-10T03:36:55 +05:00"
+      },
+      {
+        "type": "withdrawal",
+        "amount": 986,
+        "date": "2025-01-14T09:39:15 +05:00"
+      }
+    ],
+        "registered": "2025-02-28T07:37:02 +05:00",
+        "active": true
+    },
+    {
+        "accountNumber": "1015",
+        "client": {
+        "identificationType": "CC",
+        "identificationNumber": "2015",
+        "firstName": "Lorenso",
+        "surname": "Moncada",
+        "email": "Lmoncada@comtrek.com",
+        "phone": "+57 879 751 2135"
+    },
+        "mainCurrency": "cop",
+        "currencies": [
+        "cop",
+        "usd"
+    ],
+        "movements": [
+      {
+        "type": "withdrawal",
+        "amount": 282,
+        "date": "2025-05-10T03:36:55 +05:00"
+      },
+      {
+        "type": "withdrawal",
+        "amount": 986,
+        "date": "2025-01-14T09:39:15 +05:00"
+      }
+    ],
+        "registered": "2025-02-28T07:37:02 +05:00",
+        "active": true
+    }]); //insercion de multiples archivos
+
+db.account.insertMany(
+[
+    {
+        "accountNumber": "1016",
+        "client": {
+        "identificationType": "CE",
+        "identificationNumber": "2020",
+        "firstName": "Esteban",
+        "surname": "Esfer",
+        "email": "Eesfer@comtrek.com",
+        "phone": "+57 879 517 1235"
+    },
+        "mainCurrency": "cop",
+        "currencies": [
+        "cop",
+        "usd"
+    ],
+        "movements": [
+      {
+        "type": "withdrawal",
+        "amount": 282,
+        "date": "2025-12-10T03:36:55 +05:00"
+      },
+      {
+        "type": "withdrawal",
+        "amount": 986,
+        "date": "2025-01-14T09:39:15 +05:00"
+      }
+    ],
+        "registered": "2025-02-28T07:37:02 +05:00",
+        "active": true
+    },
+    {
+        "accountNumber": "1017",
+        "client": {
+        "identificationType": "CC",
+        "identificationNumber": "1041",
+        "firstName": "Maria",
+        "surname": "Mosjica",
+        "email": "Mosjica@comtrek.com",
+        "phone": "+57 879 753 2135"
+    },
+        "mainCurrency": "usd",
+        "currencies": [
+        "cop",
+        "usd"
+    ],
+        "movements": [
+      {
+        "type": "withdrawal",
+        "amount": 282,
+        "date": "2025-06-10T03:36:55 +05:00"
+      },
+      {
+        "type": "withdrawal",
+        "amount": 986,
+        "date": "2025-01-14T09:39:15 +05:00"
+      }
+    ],
+        "registered": "2025-02-28T07:37:02 +05:00",
+        "active": true
+    },
+    {
+        "accountNumber": "1015",
+        "client": {
+        "identificationType": "CC",
+        "identificationNumber": "2015",
+        "firstName": "Lorenso",
+        "surname": "Moncada",
+        "email": "Lmoncada@comtrek.com",
+        "phone": "+57 879 751 2135"
+    },
+        "mainCurrency": "cop",
+        "currencies": [
+        "cop",
+        "usd"
+    ],
+        "movements": [
+      {
+        "type": "withdrawal",
+        "amount": 282,
+        "date": "2025-05-10T03:36:55 +05:00"
+      },
+      {
+        "type": "withdrawal",
+        "amount": 986,
+        "date": "2025-01-14T09:39:15 +05:00"
+      }
+    ],
+        "registered": "2025-02-28T07:37:02 +05:00",
+        "active": true
+    }]); //insercion de multiples archivos
+db.account.insertMany(
+[
+    {
+        "accountNumber": "1023",
+        "client": {
+        "identificationType": "CC",
+        "identificationNumber": "2085",
+        "firstName": "Laura",
+        "surname": "Espocito",
+        "email": "Lespocito@comtrek.com",
+        "phone": "+57 159 517 1235"
+    },
+        "mainCurrency": "usd",
+        "currencies": [
+        "cop",
+        "usd"
+    ],
+        "movements": [
+      {
+        "type": "withdrawal",
+        "amount": 282,
+        "date": "2025-05-10T03:36:55 +05:00"
+      },
+      {
+        "type": "withdrawal",
+        "amount": 986,
+        "date": "2025-01-14T09:39:15 +05:00"
+      }
+    ],
+        "registered": "2025-02-28T07:37:02 +05:00",
+        "active": true
+    },
+    {
+        "accountNumber": "3250",
+        "client": {
+        "identificationType": "CE",
+        "identificationNumber": "2095",
+        "firstName": "Albert",
+        "surname": "Torres",
+        "email": "Atorres@comtrek.com",
+        "phone": "+57 258 517 2135"
+    },
+        "mainCurrency": "usd",
+        "currencies": [
+        "cop",
+        "usd"
+    ],
+        "movements": [
+      {
+        "type": "withdrawal",
+        "amount": 282,
+        "date": "2025-03-10T03:36:55 +05:00"
+      },
+      {
+        "type": "withdrawal",
+        "amount": 986,
+        "date": "2025-01-14T09:39:15 +05:00"
+      }
+    ],
+        "registered": "2025-02-28T07:37:02 +05:00",
+        "active": true
+    },
+    {
+        "accountNumber": "3625",
+        "client": {
+        "identificationType": "CC",
+        "identificationNumber": "1598",
+        "firstName": "Natalia",
+        "surname": "Angarita",
+        "email": "Nangarita@comtrek.com",
+        "phone": "+57 235 751 2135"
+    },
+        "mainCurrency": "usd",
+        "currencies": [
+        "cop",
+        "usd"
+    ],
+        "movements": [
+      {
+        "type": "withdrawal",
+        "amount": 282,
+        "date": "2025-05-10T03:36:55 +05:00"
+      },
+      {
+        "type": "withdrawal",
+        "amount": 986,
+        "date": "2025-01-14T09:39:15 +05:00"
+      }
+    ],
+        "registered": "2025-02-28T07:37:02 +05:00",
+        "active": true
+    }]); //insercion de multiples archivos
+
+//----------------------------------------- FINDONE ------------------------------------------//
+
+db.accounts.find({accountNumber:"1010"});
+db.accounts.find({identificationNumber:"5230"});
+db.accounts.find({email:"Hsimpson@comtrek.com"});
+
+//----------------------------------------- FINDMANY ------------------------------------------//
+
+db.accounts.find({accountNumber:{$gt:"1013"}});
+db.accounts.find({identificationNumber: {$eq: "2020"},{_id: 0, identificationNumber: 1, mainCurrency: 1}});
+db.accounts.find({Lespocito@comtrek.com:"usd"}).count;

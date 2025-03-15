@@ -279,7 +279,8 @@ db.account.insertMany(
     ],
         "registered": "2025-02-28T07:37:02 +05:00",
         "active": true
-    }]); //insercion de multiples archivos
+    }]); //insercion de multiples archivos+
+    
 db.account.insertMany(
 [
     {
@@ -384,3 +385,531 @@ db.accounts.find({email:"Hsimpson@comtrek.com"});
 db.accounts.find({accountNumber:{$gt:"1013"}});
 db.accounts.find({identificationNumber: {$eq: "2020"},{_id: 0, identificationNumber: 1, mainCurrency: 1}});
 db.accounts.find({Lespocito@comtrek.com:"usd"}).count;
+
+//------------------------------------------- PING --------------------------------------------//
+
+//Verifica la conecctividad con la base de datos
+db.runCommand({ping:1});
+
+//----------------------------------------- COLsTATS ------------------------------------------//
+
+//Detalla la informacion relevante sobre la coleccion
+
+db.collection.stats()
+
+//----------------------------------------- DBSTATS ------------------------------------------//
+
+// proporciona estadisticas detalladas acerca de una base de datos especifica
+
+db.stats()
+
+//---------------------------------------- db.RunCommand() ------------------------------------//
+
+//se utiliza para verificar si el servidor está en funcionamiento y 
+// para obtener información básica sobre el estado del servidor.
+
+db.runCommand({hello: 1});
+
+//----------------------------------------- show dbs ------------------------------------------//
+
+// Se emplea para listar las bases de datos disponibles en un servidor
+
+db. show dbs();
+
+//------------------------------------- show collections --------------------------------------//
+
+// permite visualizar una lista que contiene todas 
+// las colecciones existentes en una base de datos específica.
+
+show collection()
+
+//------------------------------------- show collections --------------------------------------//
+
+// sirve para posicionarce en la base de datos deseada
+
+use()
+
+//---------------------------------------- insertOne ------------------------------------------//
+
+// Sirve para insertar un documento
+
+db.collection.insertOne({"name":"Product 1", "description":"This is the first product."})
+
+//------------------------------------- createCollection --------------------------------------//
+
+db.createCollection("log",{capped: true, size: 1000000});
+
+//------------------------------------------- drop --------------------------------------------//
+
+// Srive para eliminar una coleccion especifica de una base de datos
+
+db.collection.drop();
+
+//--------------------------------------- dropDataBase ----------------------------------------//
+
+// Sirve para eliminar una base de datos completa
+
+db. dropDataBase();
+
+//---------------------------------------- insertMany -----------------------------------------//
+
+db.<nombre_de_colección>.insertMany([
+  { "campo1": "valor1", "campo2": "valor2" },
+  { "campo1": "valor3", "campo2": "valor4" },
+  { "campo1": "valor5", "campo2": "valor6" }
+]);
+
+//------------------------------------------ $push --------------------------------------------//
+
+// el operador $push permite agregar un elemento al array
+
+db.inventory.updateOne(
+    //query
+    {_id: 4},
+    {
+        //operador
+        $push: { // se agrage tags
+            tags: "headphone"
+        }
+    }
+)
+
+//------------------------------------------  --------------------------------------------//
+
+// serive para consultar todos los documentos de una coleccion
+
+db.collection.find([<query>],[proyection],[<options>])
+
+//  proyeccion
+
+db.usuarios.find(
+//filtro
+  { "edad": { $gt: 25 } },
+
+//Projection
+  { "_id": 0, "nombre": 1, "edad": 1 }
+);
+
+//---------------------- Consultas usando los operadores $eq y $ne ------------------------//
+
+use("mi_db")
+
+db.inventory.drop()
+
+db.inventory.insertMany([
+  { _id: 1, item: { name: "ab", code: "123" }, qty: 15, tags: ["A", "B", "C"] },
+  { _id: 2, item: { name: "cd", code: "123" }, qty: 20, tags: ["B"] },
+  { _id: 3, item: { name: "ij", code: "456" }, qty: 25, tags: ["A", "B"] },
+  { _id: 4, item: { name: "xy", code: "456" }, qty: 30, tags: ["B", "A"] },
+  { _id: 5, item: { name: "mn", code: "000" }, qty: 20, tags: [["A", "B"], "C"] },
+])
+
+db.inventory.find()
+
+
+//        Consultas usando los operadores $eq y $ne - Operador $ne
+
+{ <campo>: { $ne: <valor> } }
+
+use("mi_db")
+
+db.inventory.find({qty: { $eq:25}})
+
+//--------------------------------- Lectura de Datos - Consultas a subdocumentos--------------//
+
+use("mi_db")
+
+db.inventory.find(
+    // query
+    {
+        "item.code": { $eq: "456" }
+    },
+    
+    // proyección
+    { "item": 1 }
+)
+
+//---------- Lectura de Datos - Consultas usando los operadores $gt, $gte, $lt y $lte ---------//
+
+//Sintaxis general para $gt (Mayor que (greater than)).
+{ <campo>: { $gt: <valor> } }
+
+//Sintaxis general para $gte (Mayor o igual que (greater than or equal)).
+{ <campo>: { $gte: <valor> } }
+
+//Sintaxis general para $lt (Menor que (less than)).
+{ <campo>: { $lt: <valor> } }
+
+//Sintaxis general para $lte (Menor o igual que (less than or equal)).
+{ <campo>: { $lte: <valor> } }
+
+// Actualización de Datos - Actualización con operadores de Arrays
+
+use("mi_db")
+
+db.inventory.drop()
+
+db.inventory.insertMany([
+  { _id: 1, item: { name: "item ab", code: "123", description : "Single line description."    }, qty: 15, tags: [ "school", "book", "bag", "headphone", "appliance" ], },
+  { _id: 2, item: { name: "item cd", code: "123", description : "First line\nSecond line"     }, qty: 20, tags: [ "appliance", "school", "book" ] },
+  { _id: 3, item: { name: "item ij", code: "456", description : "Many spaces before     line" }, qty: 25, tags: [ "school", "book" ] },
+  { _id: 4, item: { name: "item xy", code: "456", description : "Multiple\nline description"  }, qty: 30, tags: [ "electronics", "school" ] },
+  { _id: 5, item: { name: "item mn", code: "000" }, qty: 20, tags: [ "appliance", "school" ] },
+])
+
+db.inventory.find()
+
+//Agregar elementos a un array con $push
+
+use("mi_db")
+
+db.inventory.updateOne(
+    //query
+    {_id: 4},
+    {
+        //operador
+        $push: {
+            tags: "headphone"
+        }
+    }
+)
+
+use("mi_db")
+
+db.inventory.updateOne({_id: 4}, {
+  $push: {
+    tags:{
+      $each:["headphone","wireless"]
+    }
+  }
+})
+db.inventory.find({_id: 4})
+
+// Quitar elementos de un Array con $pull
+
+use("mi_db")
+
+db.inventory.updateMany(
+    //query
+    {},
+    //operadores
+    {  
+        $pull: {
+            tags: "book"
+        }
+    }
+)
+
+// Modificar varios elementos de un array con $in o $pullAlll
+
+// Si se desea eliminar varios elementos de un array se pueden usar los operadores $in o $pullAll.
+
+
+use("mi_db")
+
+db.inventory.updateMany(
+    //query
+    {},
+
+    //operadores
+    {  
+        $pull: {
+            tags:  {
+                $in: ["appliance", "scholl"]
+            }
+        }
+}
+)
+
+// Actualización e inserción en un mismo comando (upsert)
+
+use("mi_db")
+
+db.iot.insertOne({
+    sensor: "S001",
+    fecha: "2023-01-02",
+    lecturas: [78]
+})
+
+db.iot.updateOne({
+    sensor: "S001",
+    fecha: "2023-01-02",
+}, {
+    $push: {
+        lecturas: 75
+    }
+})
+
+use("mi_db")
+db.iot.find()
+
+//Sintaxis general del comando upsert.
+
+db.<nombre_de_colección>.updateOne(
+<filtro>,
+<operación_de_actualización>,
+{ upsert: true }
+);
+
+// Actualización de varios documentos con el operador $unset
+
+use("sample_training")
+
+db.zips.updateMany(
+    //consulta
+    { city: "CLEVELAND"},
+    
+    //operadores de actualización
+    {
+        $unset: {
+            my_data: 1
+        }
+    }
+)
+
+// Actualización de varios documentos con el operador $rename
+
+use("sample_training")
+
+db.zips.updateMany(
+    //consulta
+    { city: "CLEVELAND"},
+    
+    //operadores de actualización
+    {
+        $rename: {
+            miAttr: "my_data"
+        }
+    }
+)
+
+//Actualización de varios documentos con el operador $set
+
+use("sample_training")
+
+db.zips.updateMany(
+    //consulta
+    { city: "CLEVELAND"},
+    
+    //operadores de actualización
+    {
+        $set: {
+            miAttr: "hola mundo"
+        }
+    }
+)
+
+// Actualización de Datos - Operadores para actualización de documentos
+
+// Los operadores $set y $inc fueron vistos anteriormente, pero estos no son los únicos operadores que hay. La siguiente tabla resume alguno de los operadores más usados:
+
+
+
+Operador
+$inc
+
+Descripción
+Incrementa un valor numérico en una cantidad específica.
+
+Ejemplo
+{ $inc: { "cantidad": 5 } }
+
+
+
+Operador
+$mul
+
+Descripción
+Multiplica un valor numérico por un factor específico.
+
+Ejemplo
+{ $mul: { "precio": 1.1 } }
+
+
+
+Operador
+$rename
+
+Descripción
+Cambia el nombre de un atributo.
+
+Ejemplo
+{ $rename: { "viejo_nombre": "nuevo_nombre" } }
+
+
+
+Operador
+$set
+
+Descripción
+Asigna un valor específico a un atributo.
+
+Ejemplo
+{ $set: { "estado": "activo" } }
+
+
+
+Operador
+$unset
+
+Descripción
+Elimina un atributo de un documento.
+
+Ejemplo
+{ $unset: { "campo": 1 } }
+
+
+
+Operador
+$min
+
+Descripción
+Actualiza un atributo con el valor mínimo si es mayor.
+
+Ejemplo
+{ $min: { "puntuación": 90 } }
+
+
+
+Operador
+$max
+
+Descripción
+Actualiza un atributo con el valor máximo si es menor.
+
+Ejemplo
+{ $max: { "cantidad": 100 } }
+
+
+
+Operador
+$currentDate
+
+Descripción
+Establece un atributo con la fecha y hora actual.
+
+Ejemplo
+{ $currentDate: { "ultima_actualización": true } }
+
+
+Operador
+$addToSet
+
+Descripción
+Añade un valor a un conjunto si no existe.
+
+Ejemplo
+{ $addToSet: { "etiquetas": "nuevo" } }
+
+
+
+Operador
+$pop
+
+Descripción
+Elimina el primer o último valor de un conjunto.
+
+Ejemplo
+{ $pop: { "colores": -1 } }
+
+
+
+Operador
+$pull
+
+Descripción
+Elimina un valor específico de un conjunto.
+
+Ejemplo
+{ $pull: { "intereses": "música" } }
+
+
+
+Operador
+$push
+
+Descripción
+Añade un valor a un conjunto.
+
+Ejemplo
+{ $push: { "comentarios": "Nuevo comentario" } }
+
+
+
+Operador
+$pullAll
+
+Descripción
+Elimina varios valores específicos de un conjunto.
+
+Ejemplo
+{ $pullAll: { "etiquetas": ["antiguo", "usado"] } }
+
+// Actualización de varios documentos de una colección mediante updateMany()
+
+db.<nombre_de_colección>.updateMany(
+  <filtro>,
+  <operación_de_actualización>
+);
+
+use("sample_training")
+
+db.zips.updateMany(
+    //consulta
+    { city: "CLEVELAND"},
+    
+    //operadores de actualización
+    {
+        $inc: {
+            pop: 10000
+        }
+}
+)
+
+// Actualización de un documento en una colección mediante updateOne() - ObjectID
+
+use("mi_db")
+db.productos.insertOne({
+        nombre: "Producto 5",
+        precio: 500
+})
+
+use("mi_db")
+
+db.productos.updateOne(
+    //query
+    {_id: ObjectId('654a7c051f0bf1efd9ebbed0')},
+
+    //operaciones de actualización
+    {
+        $set: {
+            nombre: "Prod. 5",
+            "tag": ['A', 'B', 'C']},
+        $inc: {
+            precio: -100,
+        }
+    }
+)
+
+// Actualización de un documento en una colección mediante updateOne()-$inc
+
+use("mi_db")
+
+db.productos.updateOne(
+    //query
+    {_id: 2},
+
+    //operaciones de actualización
+    {
+        $inc: {
+            precio: 300,
+        }
+    }
+)
+
+// Eliminación de Datos - Eliminar bases de datos con dropDatabases
+
+use <nombre_de_la_base_de_datos> // Cambia a la base de datos que deseas eliminar
+db.dropDatabase()
+use("mi_db")
+db.dropDatabase()
